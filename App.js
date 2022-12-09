@@ -1,20 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useEffect } from "react"
+import { StatusBar } from "expo-status-bar";
+import { Button, StyleSheet, Text, View, Platform, ScrollView } from "react-native";
+import { AppBar } from "@react-native-material/core";
+import PostListing from "./components/post-listing"
+
 
 export default function App() {
+
+
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <AppBar style={styles.appBar} title={"Edureka Shop"}></AppBar>
+      <ScrollView>
+        <PostListing />
+      </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  appBar: { marginTop: Platform.OS === "ios" ? 40 : 0 },
 });
