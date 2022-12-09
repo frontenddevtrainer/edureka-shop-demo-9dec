@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 
 function PostListing({ data }) {
   const styles = StyleSheet.create({
@@ -13,8 +13,8 @@ function PostListing({ data }) {
   const [ posts, setPosts ] = useState()
 
   async function getPosts() {
-    const response = await (await fetch("https://jsonplaceholder.typicode.com/posts")).json()
-    setPosts(response);
+    const response = await (await fetch("https://jsonplaceholder.typicode.com/photos")).json()
+    setPosts(response.slice(0, 100));
   }
 
   useEffect(() => {
@@ -34,7 +34,9 @@ function PostListing({ data }) {
       {posts.map((item, index) => {
         return (
           <View style={styles.listItem} key={index}>
-            <Text>{item.title}</Text>
+            <View><Image style={{ height: 50, width: 50 }} source={{ uri: item.thumbnailUrl }} /></View>
+            <View><Text>{item.title}</Text></View>
+            
           </View>
         );
       })}
